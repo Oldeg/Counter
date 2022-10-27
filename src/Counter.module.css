@@ -1,0 +1,59 @@
+.box {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+
+}
+.counter {
+    border: rgba(93, 255, 1, 0.5);
+    border-radius: 12px;
+    width: 460px;
+    height: 150px;
+    margin-bottom: 20px;
+    background-color: rgba(93, 255, 1, 0.5);
+}
+.button1 {
+    position: absolute;
+    left:50px ;
+    top: 15px;
+}
+.button2 {
+    position: absolute;
+    left: 250px;
+    top: 15px;
+}
+.buttonBox {
+    position: absolute;
+    top: 180px;
+    border: 2px solid #41ff00;
+    border-radius: 12px ;
+    width: 460px;
+    height: 70px;
+
+}
+.number {
+    position: absolute;
+    top: 35px;
+    left: 210px;
+    font-size: 60px;
+    font-weight: bold;
+}
+.maxNumber {
+    position: absolute;
+    top: 15px;
+    left: 200px;
+    color:red;
+    font-size: 90px;
+    font-weight: bold;
+}
+.button {
+    width: 150px;
+    height:40px;
+    border-radius: 5px;
+    border: rgba(93, 255, 1, 0.5);
+    background-color: rgba(93, 255, 1, 0.5);
+    font-weight:bold;
+    font-size: 20px;
+
+
+}
