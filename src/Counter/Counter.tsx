@@ -1,23 +1,19 @@
 import React from 'react';
 import s from './Counter.module.css'
 import {UniversalButton} from "./UniversalButton";
-import {PARAMETERS_MAX_VALUE, PARAMETERS_START_VALUE} from "../App";
+import {useDispatch, useSelector} from "react-redux";
+import {CounterRootStateType} from "../Redux/store";
+import {increaseAC, InitialStateType, resetCounterAC} from "../Redux/Reducers/commonReducer";
 
-type CounterType = {
-    error: boolean
-    withoutError: boolean
-    increase: () => void
-    startValue: number
-    maxValue: number
-    counter: number
-    resetCounter: () => void
-    resetDisabled: boolean
-    increaseDisabled: boolean
-}
-export const Counter = (props: CounterType) => {
-    const counterValue = props.counter === props.maxValue ? s.maxNumber : s.counterValue;
-    const incorrectValue = props.startValue === props.maxValue || props.error;
-    const anotherValues = (props.startValue !== PARAMETERS_START_VALUE || props.maxValue !== PARAMETERS_MAX_VALUE) && props.withoutError
+
+export const Counter = () => {
+    const dispatch = useDispatch()
+    const state = useSelector<CounterRootStateType, InitialStateType>(state => state.commonReducer)
+    const increaseDisabled = state.counter === state.maxValue || state.error
+    const resetDisabled = state.counter <= state.startValue
+    const counterValue = state.counter === state.maxValue ? s.maxNumber : s.counterValue;
+    const incorrectValue = state.setStartValue === state.setMaxValue || state.error;
+    const anotherValues = (state.startValue !== state.setStartValue || state.maxValue !== state.setMaxValue) && state.withoutError
 
     return (
 
@@ -25,18 +21,18 @@ export const Counter = (props: CounterType) => {
 
             <div className={s.counter}>
                 {incorrectValue ? <h2 className={s.error}>Incorrect value!</h2>
-                : anotherValues ? <h2 className={s.withoutError}>Enter values and press 'set'</h2>
-                : <h2 className={counterValue}>{props.counter}</h2>}
+                    : anotherValues ? <h2 className={s.withoutError}>Enter values and press 'set'</h2>
+                        : <h2 className={counterValue}>{state.counter}</h2>}
             </div>
             <div className={s.buttonBox}>
                 <div className={s.button1}>
-                    <UniversalButton callback={props.increase}
+                    <UniversalButton callback={() => dispatch(increaseAC())}
                                      name={'inc'}
-                                     disabled={props.error ? props.increaseDisabled : props.increaseDisabled}/>
+                                     disabled={state.error ? increaseDisabled : increaseDisabled}/>
                 </div>
                 <div className={s.button2}>
-                    <UniversalButton callback={props.resetCounter}
-                                     name={'res'} disabled={props.error ? props.resetDisabled : props.resetDisabled}/>
+                    <UniversalButton callback={() => dispatch(resetCounterAC())}
+                                     name={'res'} disabled={state.error ? resetDisabled : resetDisabled}/>
                 </div>
             </div>
         </div>

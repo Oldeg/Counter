@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import {Counter} from './Counter/Counter';
 import {CounterValues} from "./Counter/CounterValues";
 
 
-const INITIAL_START_VALUE = 0;
+
+/*const INITIAL_START_VALUE = 0;
 const INITIAL_MAX_VALUE = 5;
 const STEP = 1;
 export const PARAMETERS_START_VALUE = getLocalStorageValue('START_VALUE', INITIAL_START_VALUE)
@@ -22,16 +23,17 @@ function getLocalStorageValue(key: string, initialValue: number) {
 function setToLocalStorage(key: string, value: number) {
     const saveToLocalStorage = JSON.stringify(value)
     localStorage.setItem(key, saveToLocalStorage)
-}
+}*/
 
 function App() {
-    const [counter, setCounter] = useState<number>(PARAMETERS_START_VALUE)
+    /*const [counter, setCounter] = useState<number>(PARAMETERS_START_VALUE)
     const [startValue, setStartValue] = useState<number>(PARAMETERS_START_VALUE)
-    const [maxValue, setMaxValue] = useState<number>(PARAMETERS_MAX_VALUE)
-    const [error, setError] = useState<boolean>(false)
+    const [maxValue, setMaxValue] = useState<number>(PARAMETERS_MAX_VALUE)*/
+    /*const [error, setError] = useState<boolean>(false)
     const [withoutError, setWithoutError] = useState<boolean>(true)
     const increaseDisabled = counter === maxValue
     const resetDisabled = counter <= startValue
+    const dispatch = useDispatch()
 
 
     const increase = () => {
@@ -41,43 +43,28 @@ function App() {
         setCounter(startValue)
     }
     const setValue = () => {
-        setToLocalStorage('START_VALUE',startValue)
+        setToLocalStorage('START_VALUE', startValue)
         setToLocalStorage('MAX_VALUE', maxValue)
         setCounter(startValue)
         setWithoutError(false)
 
     }
-    const startCallback = (value:number) => {
+    const startCallback = (value: number) => {
         setStartValue(value)
         setCounter(value)
         setError(value < 0 || value >= maxValue)
         setWithoutError(true)
     }
-    const maxCallback = (value:number) => {
+    const maxCallback = (value: number) => {
         setMaxValue(value)
         setError(value <= startValue)
         setWithoutError(true)
 
-    }
+    }*/
     return (
         <div className={'App'}>
-            <Counter
-                error={error}
-                withoutError ={withoutError}
-                resetDisabled={resetDisabled}
-                increaseDisabled={increaseDisabled}
-                maxValue={maxValue}
-                startValue={startValue}
-                increase={increase}
-                counter={counter}
-                resetCounter={resetCounter}/>
-            <CounterValues
-                maxValue={maxValue}
-                startValue={startValue}
-                error={error}
-                changeCounterValues={setValue}
-                startCallback={startCallback}
-                maxCallback={maxCallback}/>
+            <Counter/>
+            <CounterValues/>
         </div>
 
     )
